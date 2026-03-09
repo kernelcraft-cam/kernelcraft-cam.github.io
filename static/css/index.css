@@ -13,14 +13,14 @@ body {
 }
 
 .publication-title {
-  font-family: 'Roboto', 'Arial', sans-serif;
-  font-weight: 700;
+  font-family: 'Noto Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 600;
   font-size: 3rem !important;
   line-height: 1.25;
   margin-top: 0.6rem;
   margin-bottom: 1rem !important;
   letter-spacing: -0.01em;
-  color: #1a1a1a;
+  color: #363636;
 }
 
 .publication-logo {
