@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="KernelCraft: Benchmarking for Agentic Close-to-Metal Kernel Generation on Emerging Hardware">
+  <meta name="keywords" content="KernelCraft, LLM, kernel generation, accelerator, ISA, benchmark, agentic systems">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KernelCraft: Benchmarking for Agentic Close-to-Metal Kernel Generation on Emerging Hardware</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Academicons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <link rel="icon" href="static/images/KernelCraft.png">
+</head>
+<body>
+
+
+<!-- Hero / Title Section -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <div class="publication-logo">
+            <img src="static/images/KernelCraft.png" alt="KernelCraft Logo" style="height: 72px; vertical-align: middle;">
+          </div>
+          <h1 class="title is-3 publication-title">
+            KernelCraft: Benchmarking for Agentic Close-to-Metal Kernel Generation on Emerging Hardware
+          </h1>
+          <div class="publication-authors">
+            <span class="author-block">Jiayi Nie<sup>*1</sup>,</span>
+            <span class="author-block">Haoran Wu<sup>*1</sup>,</span>
+            <span class="author-block">Yao Lai<sup>1</sup>,</span>
+            <span class="author-block">Zeyu Cao<sup>1</sup>,</span>
+            <span class="author-block">Cheng Zhang<sup>2</sup>,</span>
+            <span class="author-block">Binglei Lou<sup>2</sup>,</span>
+            <br>
+            <span class="author-block">Erwei Wang<sup>3</sup>,</span>
+            <span class="author-block">Jianyi Cheng<sup>4</sup>,</span>
+            <span class="author-block">Timothy M. Jones<sup>1</sup>,</span>
+            <span class="author-block">Robert Mullins<sup>1</sup>,</span>
+            <span class="author-block">Rika Antonova<sup>1</sup>,</span>
+            <span class="author-block">Yiren Zhao<sup>2</sup></span>
+          </div>
+
+          <div class="publication-affiliations">
+            <span><sup>1</sup>University of Cambridge</span>
+            <span><sup>2</sup>Imperial College London</span>
+            <span><sup>3</sup>AMD</span>
+            <span><sup>4</sup>University of Edinburgh</span>
+          </div>
+          <div class="publication-note">
+            <sup>*</sup>Equal Contribution
+          </div>
+
+          <!-- Links -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- ArXiv Link -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark disabled-link">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- Code Link -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark disabled-link">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code (Coming Soon)</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser Figure -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <figure class="image" style="max-width: 420px; margin: 0 auto;">
+        <img src="static/figures/fig1.png" alt="KernelCraft Overview" style="width: 100%;">
+      </figure>
+      <h2 class="subtitle has-text-centered" style="margin-top: 15px; max-width: 100%;">
+        <strong>Overview of KernelCraft.</strong> Generation tasks span three levels of workloads: primitive operations, composite operations, and end-to-end systems. The LLM agent receives task descriptions, ISA specifications, and hardware configurations as inputs, and iteratively refines kernels using tool-based feedback.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- Abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            New AI accelerators with novel instruction set architectures (ISAs) often require developers to manually craft low-level kernels &mdash; a time-consuming, laborious, and error-prone process that cannot scale across diverse hardware targets. This prevents emerging hardware platforms from reaching the market efficiently. While prior LLM-based code generation has shown promise in mature GPU ecosystems, it remains unclear whether agentic LLM systems can quickly produce valid and efficient kernels for emerging hardware with new ISAs.
+          </p>
+          <p>
+            We present <strong>KernelCraft</strong>: the first benchmark to evaluate an LLM agent's ability to generate and optimize low-level kernels for customized accelerators via a function-calling, feedback-driven workflow. Within KernelCraft, the agent refines kernels under ISA and hardware constraints using automated feedback derived from compilation checks, simulation, and correctness validation against ground truth. In our experiments, we assess agent performance across three emerging accelerator platforms on more than 20 ML tasks, each with 5 diverse task configurations, with special evaluation of task configuration complexity. Across four leading reasoning models, top agents produce functionally valid kernels for previously unseen ISAs within a few refinement steps, with optimized kernels that match or outperform template-based compiler baselines. With that, we demonstrate the potential for reducing the cost of kernel development for accelerator designers and kernel developers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Benchmark Framework -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Benchmark Framework</h2>
+
+        <figure class="image" style="margin-bottom: 1.5rem; max-width: 85%; margin-left: auto; margin-right: auto;">
+          <img src="static/figures/fig2.gif" alt="KernelCraft Benchmark Flow" style="width: 100%;">
+        </figure>
+        <p class="has-text-centered" style="margin-bottom: 2rem; color: #555;">
+          <strong>Diagnosis-and-repair loop.</strong> Starting from workload/ISA/hardware specifications, the agent writes an assembly kernel that is automatically verified using syntax checks and reference-based functional checks. When mismatches are detected, KernelCraft performs memory-level diff diagnostics and feeds signals back to the agent for iterative patching.
+        </p>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Hardware Platforms</h3>
+          <p>KernelCraft evaluates across three emerging accelerator platforms with diverse ISAs:</p>
+        </div>
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>ISA Type</th>
+                <th>Toolchain</th>
+                <th>Execution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>PLENA</strong></td>
+                <td>Custom NPU ISA</td>
+                <td>PLENA Compiler</td>
+                <td>Simulator</td>
+              </tr>
+              <tr>
+                <td><strong>AMD NPU</strong></td>
+                <td>Custom NPU ISA</td>
+                <td>Peano Compiler</td>
+                <td>Hardware</td>
+              </tr>
+              <tr>
+                <td><strong>Coral NPU</strong></td>
+                <td>RISC-V + RVV</td>
+                <td>RISC-V Compiler</td>
+                <td>Verilator RTL</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Results -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Results</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            We evaluate four frontier reasoning models across 3 accelerator platforms, totalling over <strong>1,100 experiments</strong>. Each task is evaluated on 5 configurations; cells show successful/total within the iteration budget per level (15, 20, and 25 iterations for Levels 1&ndash;3).
+          </p>
+        </div>
+
+        <!-- Success Rate Table -->
+        <h3 class="title is-4">Success Rates</h3>
+        <div class="table-container" style="overflow-x: auto;">
+          <table class="table is-bordered is-hoverable is-fullwidth results-table" style="font-size: 0.72rem;">
+            <thead>
+              <tr>
+                <th rowspan="2">ID</th>
+                <th rowspan="2">Task</th>
+                <th colspan="4" style="text-align:center; border-bottom: 2px solid #dbdbdb;">PLENA</th>
+                <th colspan="4" style="text-align:center; border-bottom: 2px solid #dbdbdb;">AMD NPU</th>
+                <th colspan="4" style="text-align:center; border-bottom: 2px solid #dbdbdb;">Coral NPU</th>
+              </tr>
+              <tr>
+                <th>GPT-5.2</th><th>Gemini-3</th><th>Sonnet 4</th><th>DS-R1</th>
+                <th>GPT-5.2</th><th>Gemini-3</th><th>Sonnet 4</th><th>DS-R1</th>
+                <th>GPT-5.2</th><th>Gemini-3</th><th>Sonnet 4</th><th>DS-R1</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Level 1 Header -->
+              <tr style="background: #f0f0f0;"><td colspan="14" style="text-align:center; font-weight:600; font-style:italic;">Level 1: Primitive Operations (Max 15 iterations)</td></tr>
+              <tr><td>1</td><td>SiLU</td><td><b>5/5</b></td><td><b>5/5</b></td><td><b>2/5</b></td><td style="color:#aaa;">0/5</td><td><b>1/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>3/5</b></td><td><b>3/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>2</td><td>ReLU</td><td><b>2/5</b></td><td style="color:#aaa;">0/5</td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td><b>2/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>5/5</b></td><td><b>4/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>3</td><td>GELU</td><td><b>4/5</b></td><td><b>4/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td><b>1/5</b></td><td><b>2/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>5/5</b></td><td><b>5/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>4</td><td>Softmax</td><td><b>5/5</b></td><td><b>3/5</b></td><td><b>4/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>4/5</b></td><td><b>2/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>5</td><td>LayerNorm</td><td><b>3/5</b></td><td><b>5/5</b></td><td><b>2/5</b></td><td style="color:#aaa;">0/5</td><td><b>2/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>6</td><td>RMSNorm</td><td><b>3/5</b></td><td><b>5/5</b></td><td><b>1/5</b></td><td><b>1/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>1/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>7</td><td>GEMV</td><td><b>5/5</b></td><td><b>2/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td><b>2/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>4/5</b></td><td><b>5/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>8</td><td>GEMM</td><td><b>4/5</b></td><td><b>2/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>4/5</b></td><td><b>3/5</b></td><td><b>2/5</b></td><td><b>1/5</b></td><td><b>2/5</b></td><td><b>4/5</b></td><td><b>1/5</b></td><td><b>1/5</b></td></tr>
+              <tr><td>9</td><td>BatchMatMul</td><td><b>2/5</b></td><td><b>2/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>10</td><td>Linear</td><td><b>4/5</b></td><td><b>2/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>3/5</b></td><td><b>2/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td><b>2/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>11</td><td>Conv2D</td><td colspan="4" style="text-align:center;">--</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>2/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>12</td><td>DepthwiseConv</td><td colspan="4" style="text-align:center;">--</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>5/5</b></td><td><b>3/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <!-- Level 1 Subtotal -->
+              <tr style="background: #e8f0fe; font-style:italic;"><td colspan="2">Level 1 Subtotal</td><td>37/50</td><td>30/50</td><td>12/50</td><td>1/50</td><td>16/60</td><td>11/60</td><td>3/60</td><td>1/60</td><td>34/60</td><td>28/60</td><td>2/60</td><td>1/60</td></tr>
+
+              <!-- Level 2 Header -->
+              <tr style="background: #f0f0f0;"><td colspan="14" style="text-align:center; font-weight:600; font-style:italic;">Level 2: Composite Operations (Max 20 iterations)</td></tr>
+              <tr><td>13</td><td>RoPE</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td colspan="4" style="text-align:center;">--</td></tr>
+              <tr><td>14</td><td>FFN</td><td><b>3/5</b></td><td><b>2/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>2/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>15</td><td>SwiGLU</td><td><b>4/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>16</td><td>ScaledDotProduct</td><td><b>3/5</b></td><td><b>2/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td colspan="4" style="text-align:center;">--</td></tr>
+              <tr><td>17</td><td>FlashAttention</td><td><b>3/5</b></td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td colspan="4" style="text-align:center;">--</td><td colspan="4" style="text-align:center;">--</td></tr>
+              <tr><td>18</td><td>MHA</td><td><b>3/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td colspan="4" style="text-align:center;">--</td></tr>
+              <tr><td>19</td><td>GQA</td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td colspan="4" style="text-align:center;">--</td></tr>
+              <tr><td>20</td><td>MQA</td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td colspan="4" style="text-align:center;">--</td></tr>
+              <!-- Level 2 Subtotal -->
+              <tr style="background: #e8f0fe; font-style:italic;"><td colspan="2">Level 2 Subtotal</td><td>18/40</td><td>5/40</td><td>0/40</td><td>0/40</td><td>3/35</td><td>1/35</td><td>0/35</td><td>0/35</td><td>1/10</td><td>0/10</td><td>0/10</td><td>0/10</td></tr>
+
+              <!-- Level 3 Header -->
+              <tr style="background: #f0f0f0;"><td colspan="14" style="text-align:center; font-weight:600; font-style:italic;">Level 3: End-to-End System (Max 25 iterations)</td></tr>
+              <tr><td>21</td><td>ConvBlock</td><td colspan="4" style="text-align:center;">--</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td><b>1/5</b></td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td></tr>
+              <tr><td>22</td><td>DecoderBlock (LLaMA)</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td colspan="4" style="text-align:center;">--</td></tr>
+              <tr><td>23</td><td>DecoderBlock (T5)</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td style="color:#aaa;">0/5</td><td colspan="4" style="text-align:center;">--</td></tr>
+              <!-- Level 3 Subtotal -->
+              <tr style="background: #e8f0fe; font-style:italic;"><td colspan="2">Level 3 Subtotal</td><td>0/10</td><td>0/10</td><td>0/10</td><td>0/10</td><td>0/15</td><td>0/15</td><td>0/15</td><td>0/15</td><td>0/5</td><td>1/5</td><td>0/5</td><td>0/5</td></tr>
+
+              <!-- Total -->
+              <tr style="background: #fff9c4; font-weight:700;"><td colspan="2">Total</td><td>55/100</td><td>35/100</td><td>12/100</td><td>1/100</td><td>19/110</td><td>12/110</td><td>3/110</td><td>1/110</td><td>35/75</td><td>29/75</td><td>2/75</td><td>1/75</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="has-text-centered" style="font-size: 0.8rem; color: #777; margin-top: -0.5rem; margin-bottom: 2rem;">
+          -- = Not officially supported by the platform. Each task evaluated on 5 configurations.
+        </p>
+
+        <!-- Performance Figure -->
+        <h3 class="title is-4">Kernel Performance</h3>
+        <div class="content has-text-justified">
+          <p>Speedup of best KernelCraft agent's kernels over compiler baselines on representative workloads across three accelerator platforms (PLENA: native compiler, Coral: RVV -O2, AMD: Peano).</p>
+        </div>
+        <figure class="image" style="margin-bottom: 1rem;">
+          <img src="static/figures/perf.png" alt="Performance speedup results" style="width: 100%;">
+        </figure>
+        <p class="has-text-centered" style="font-size: 0.8rem; color: #777; margin-bottom: 1rem;">
+          Coral NPU exhibits the largest gains (2&ndash;8x on GEMV, GEMM, ConvBlock). PLENA normalization tasks achieve consistent 1.06&ndash;1.22x speedups. AMD NPU results cluster tightly around baseline (0.89&ndash;1.18x).
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer.
+          </p>
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
